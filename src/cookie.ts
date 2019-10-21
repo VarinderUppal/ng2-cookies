@@ -21,6 +21,20 @@ export class CookieService {
 	}
 
 	/**
+	 * Check if cookies are enable or disable in browser
+	 *
+	 * @returns boolean value
+	 */
+	public cookiesEnabled(): boolean {
+		let cookieEnabled = (navigator.cookieEnabled);
+		if (typeof navigator.cookieEnabled == "undefined" && !cookieEnabled) {
+			document.cookie = "testcookie";
+			cookieEnabled = (document.cookie.indexOf("testcookie") != -1);
+		}
+		return cookieEnabled;
+	}
+
+	/**
 	 * Retrieves a single cookie by it's name
 	 *
 	 * @param  {string} name Identification of the Cookie
